@@ -23,6 +23,7 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ### Changed
 - instruction.txt convertido de JSON para texto puro estruturado, para legibilidade e manutenção.
+- instruction.txt condensado para caber no limite de 8000 caracteres do declarative agent, mantendo persona, regra inegociável, roteamento Learn/MRC, passo a passo e proibições de resumo/pitch.
 
 ### Changed
 - instruction.txt convertido de JSON para texto puro estruturado, para legibilidade e manutenção.
