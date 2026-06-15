@@ -6,9 +6,21 @@
     "instructions": "$[file('instruction.txt')]",
     "conversation_starters": [
         {
-			"title": "Sample conversation starters",
-			"text": "Hi! What can you do for me?"
-		}
+            "title": "Novidades do Copilot Studio",
+            "text": "Quais são as atualizações e novidades mais recentes no Copilot Studio?"
+        },
+        {
+            "title": "Workflows no Copilot Studio",
+            "text": "O que mudou nos Workflows do Copilot Studio e o que está no roadmap?"
+        },
+        {
+            "title": "Atualizações do Copilot M365",
+            "text": "Quais recursos novos do Microsoft 365 Copilot estão em rollout ou no roadmap?"
+        },
+        {
+            "title": "Novidades do Copilot",
+            "text": "O que há de mais recente no Microsoft Copilot e nas suas capacidades de chat?"
+        }
     ],
     "actions": [
         {

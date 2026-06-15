@@ -24,6 +24,7 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 ### Changed
 - instruction.txt convertido de JSON para texto puro estruturado, para legibilidade e manutenção.
 - instruction.txt condensado para caber no limite de 8000 caracteres do declarative agent, mantendo persona, regra inegociável, roteamento Learn/MRC, passo a passo e proibições de resumo/pitch.
+ - Conversation starters substituídos pelos temas reais do agente: novidades de Copilot Studio, Workflows, Copilot M365 e Copilot chat (1.3.4).
 
 ### Changed
 - instruction.txt convertido de JSON para texto puro estruturado, para legibilidade e manutenção.
