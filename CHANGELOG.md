@@ -17,6 +17,9 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - Configuração `mcp.json` do servidor MCP do Learn (transporte HTTP, sem autenticação).
 - Arquivos base do repositório: `CHANGELOG.md`, `CODEOWNERS`, `LICENSE.md`, `README.md`.
 
+### Changed
+- instruction.txt convertido de JSON para texto puro estruturado, para legibilidade e manutenção.
+
 ### Pendente
 - Definição da persona e do `instruction.txt` (regra de resposta: priorizar sempre a informação mais atualizada via Learn MCP).
 - `conversation_starters` no `declarativeAgent.json`.
@@ -26,5 +29,3 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 ---
 
 Autoria: Yan Azevedo
-
-Mantenha este CHANGELOG no padrão Keep a Changelog. Adicione entradas sempre sob ## [Unreleased], nas seções Added/Changed/Fixed/Removed. Não crie versão nem mova nada pra um número de release sem instrução explícita minha.
