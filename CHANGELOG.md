@@ -25,6 +25,11 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - instruction.txt convertido de JSON para texto puro estruturado, para legibilidade e manutenção.
 
 ### Changed
+- Reforço de concisão nas respostas (corte de respostas longas e seções em excesso).
+- Uso de emoji limitado a moderação.
+- Acionamento obrigatório do MRC em perguntas de roadmap/novidades (antes respondidas apenas com Learn).
+- Agente não oferece mais conteúdos extras não solicitados no final das respostas.
+- Versão do app elevada para 1.3.1.
 - Metadados de publicação preenchidos no `manifest.json`: developer (Yan Azevedo), nome completo, descrições e URLs de privacidade e termos de uso.
 - `contact_email` do `ai-plugin.json` atualizado.
 - Versão do app elevada para 1.3.0.
