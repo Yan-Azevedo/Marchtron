@@ -1,13 +1,13 @@
 {
     "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.27/MicrosoftTeams.schema.json",
     "manifestVersion": "1.27",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "id": "${{TEAMS_APP_ID}}",
     "developer": {
-        "name": "My App, Inc.",
-        "websiteUrl": "https://www.example.com",
-        "privacyUrl": "https://www.example.com/privacy",
-        "termsOfUseUrl": "https://www.example.com/termofuse"
+        "name": "Yan Azevedo",
+        "websiteUrl": "https://github.com/Yan-Azevedo",
+        "privacyUrl": "https://github.com/Yan-Azevedo/Marchtron/blob/main/PRIVACY.md",
+        "termsOfUseUrl": "https://github.com/Yan-Azevedo/Marchtron/blob/main/TERMS.md"
     },
     "icons": {
         "color": "color.png",
@@ -15,11 +15,11 @@
     },
     "name": {
         "short": "Marchtron${{APP_NAME_SUFFIX}}",
-        "full": "Full name for Marchtron"
+        "full": "Marchtron — Especialista técnico Microsoft"
     },
     "description": {
-        "short": "Short description for Marchtron",
-        "full": "Full description for Marchtron"
+        "short": "Suporte e dúvidas sobre tecnologias Microsoft com base na documentação oficial.",
+        "full": "Marchtron é um agente declarativo para Microsoft 365 Copilot que esclarece dúvidas e auxilia na resolução de problemas com recursos e tecnologias Microsoft. Toda resposta é fundamentada na documentação oficial mais atualizada, recuperada em tempo real via Microsoft Learn e Microsoft Release Communications. Atua em entendimento de produto, configuração, troubleshooting, arquitetura, boas práticas, exemplos de código, roadmap e atualizações de serviço."
     },
     "accentColor": "#FFFFFF",
     "supportsChannelFeatures": "tier1",
