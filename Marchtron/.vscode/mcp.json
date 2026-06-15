@@ -3,6 +3,10 @@
     "learnmicro": {
       "type": "http",
       "url": "https://learn.microsoft.com/api/mcp"
+    },
+    "MicrosoftReleaseCommunications": {
+      "type": "http",
+      "url": "https://www.microsoft.com/releasecommunications/mcp"
     }
   }
 }
