@@ -17,6 +17,7 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - Conexão com o Microsoft Release Communications MCP Server (`https://www.microsoft.com/releasecommunications/mcp`, público, sem autenticação) com 4 tools: get_recent_m365_roadmaps, get_m365_roadmap_by_id, get_recent_azure_updates, get_azure_update_by_id.
 - Orientação no `instruction.txt` para uso do MRC em perguntas sobre roadmap, release notes, status de disponibilidade e retirements, com separação de consultas entre Azure Updates e Microsoft 365 Roadmap.
 - Versão do app (`manifest.json`) elevada para 1.2.0.
+ - Versão do app (`manifest.json`) elevada para 1.3.0.
 - Configuração `mcp.json` do servidor MCP do Learn (transporte HTTP, sem autenticação).
 - Arquivos base do repositório: `CHANGELOG.md`, `CODEOWNERS`, `LICENSE.md`, `README.md`.
 
@@ -26,7 +27,10 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 ### Changed
 - Metadados de publicação preenchidos no `manifest.json`: developer (Yan Azevedo), nome completo, descrições e URLs de privacidade e termos de uso.
 - `contact_email` do `ai-plugin.json` atualizado.
-- Versão do app elevada para 1.2.1.
+- Versão do app elevada para 1.3.0.
+- Persona refinada: Marchtron declarado como assistente técnico e de atualização focado em desenvolvimento de agentes e automação Microsoft (Copilot Studio, Power Automate, Dataverse, Copilot M365).
+- Comportamento de resposta ajustado: resposta curta e direta por padrão; passo a passo numerado obrigatório em procedimentos "como fazer".
+- Adicionada orientação de manutenção de contexto da conversa entre turnos.
 
 ### Added
 - Documentos `PRIVACY.md` e `TERMS.md` na raiz do repositório.
