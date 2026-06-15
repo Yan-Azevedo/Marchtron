@@ -1,0 +1,116 @@
+{
+    "tools": [
+        {
+            "name": "get_azure_update_by_id",
+            "description": "Retrieves a specific Azure update post from Microsoft Release Communications by its unique identifier. Returns full details including the complete untruncated description, products, tags, and availability dates. Use this after listing to get full information about a specific post.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "Unique identifier of the Azure update post (e.g., '467931')",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id"
+                ]
+            },
+            "execution": {
+                "taskSupport": "optional"
+            },
+            "title": "Get azure update by id"
+        },
+        {
+            "name": "get_m365_roadmap_by_id",
+            "description": "Retrieves a specific M365 roadmap post from Microsoft Release Communications by its unique identifier. Returns full details including the complete untruncated description, products, and availability dates. Use this after listing to get full information about a specific post.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "Unique numeric identifier of the M365 roadmap post (e.g., '123456')",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id"
+                ]
+            },
+            "execution": {
+                "taskSupport": "optional"
+            },
+            "title": "Get m365 roadmap by id"
+        },
+        {
+            "name": "get_recent_azure_updates",
+            "description": "Retrieves Azure update posts from Microsoft Release Communications with optional filtering and search capabilities.\r\nReturns up to 50 Azure updates per request with truncated descriptions to manage AI context window.\r\nUse GetAzureUpdateByIdAsync to get full details (including complete description) for specific items.\r\nIf results are empty or insufficient, ask user for more specific filter criteria.\r\n\r\nRETIREMENT QUERIES:\r\nWhen user asks about retirements, retiring services, or end-of-life:\r\n- Filter by tag: tags/any(t: t eq 'Retirements')\r\n- To filter by retirement date, use the availabilities collection: availabilities/any(a: a/ring eq 'Retirement' and a/month eq 'February' and a/year eq 2026)\r\n- You can combine both: tags/any(t: t eq 'Retirements') and availabilities/any(a: a/ring eq 'Retirement' and a/month eq 'February' and a/year eq 2026)\r\n- Example: 'Azure retirements in Feb 2026' → tags/any(t: t eq 'Retirements') and availabilities/any(a: a/ring eq 'Retirement' and a/month eq 'February' and a/year eq 2026)\r\n- Present retirement timing from the availabilities array: look for entries where ring='Retirement' and show the year and month.\r\n\r\nRESULT EXPLANATION REQUIREMENT:\r\nWhen returning filtered results:\r\n- Order results from most recent to oldest based on the relevant date field used for filtering.\r\n- Briefly state which date field was used:\r\n- Availability dates (GA/preview): 'Filtered by feature release timing (when features become available to customers)'\r\n- Retirement dates: 'Filtered by retirement tag. Retirement dates shown from the availabilities array (ring, year, month).'\r\n- Publication dates (created/modified): 'Filtered by post publication date (when posts were published to Azure Updates)'\r\nExample: 'Here are Azure features with GA in February 2026 (filtered by general availability date)...'",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "filter": {
+                        "description": "OData filter expression for precise querying.\r\n\r\nBASIC FILTERS:\r\n• Tags: tags/any(t: t eq 'Features') or tags/any(t: t eq 'Retirements') or tags/any(t: t eq 'Compliance') or tags/any(t: t eq 'Management') or tags/any(t: t eq 'Microsoft Ignite') or tags/any(t: t eq 'Open Source') or tags/any(t: t eq 'Pricing & Offerings') or tags/any(t: t eq 'Regions & Datacenters') or tags/any(t: t eq 'Security') or tags/any(t: t eq 'Services')\r\n• Products: products/any(p: p eq 'Azure Storage') or products/any(p: p eq 'Azure Machine Learning')\r\n• Product Categories: productCategories/any(pc: pc eq 'Compute') or productCategories/any(pc: pc eq 'Databases') or productCategories/any(pc: pc eq 'Networking') or productCategories/any(pc: pc eq 'Security') or productCategories/any(pc: pc eq 'Storage') or productCategories/any(pc: pc eq 'Analytics') or productCategories/any(pc: pc eq 'Containers') or productCategories/any(pc: pc eq 'DevOps') or productCategories/any(pc: pc eq 'Management and governance') or productCategories/any(pc: pc eq 'Web')\r\n• Status: status eq 'Launched' | 'In preview' | 'In development' | null\r\n• Title: Use the 'search' parameter instead of filter for title text matching\r\n\r\nDATE FILTERING (choose based on user intent):\r\n\r\n1. FEATURE AVAILABILITY DATES (DEFAULT - use when user asks about RELEASE TIMING):\r\n   USE THIS FILTER WHEN user query contains words like: 'coming', 'rolling out', 'launching', 'released', 'upcoming', 'planned', 'available', 'GA dates', 'preview dates', 'release dates'\r\n   Format: YYYY-MM (e.g., '2026-01' for January 2026)\r\n   Meaning: WHEN THE FEATURE BECOMES AVAILABLE to customers (release timing)\r\n   \r\n   Examples:\r\n   - generalAvailabilityDate eq '2026-02' (features with GA in February 2026)\r\n   - previewAvailabilityDate ge '2026-01' (previews available in or after January 2026)\r\n   - privatePreviewAvailabilityDate le '2026-06' (private previews on or before June 2026)\r\n   - (generalAvailabilityDate eq '2026-02' or previewAvailabilityDate eq '2026-02') (GA OR preview in February 2026)\r\n\r\n2. ANNOUNCEMENT/PUBLICATION DATES (use ONLY when user explicitly asks about when a post was published or modified):\r\n   USE THIS FILTER WHEN user query contains words like: 'published', 'updated', 'created', 'added', 'last week', 'modified', 'announcement date', 'post creation date', 'when was this posted', 'newly added', 'recently updated'\r\n   Format: ISO 8601 DateTime (e.g., 2026-02-01T00:00:00Z)\r\n   Meaning: WHEN THE POST WAS PUBLISHED to Azure Updates website (not when feature becomes available)\r\n   \r\n   Examples:\r\n   - created ge 2026-02-01T00:00:00Z and created le 2026-02-28T23:59:59Z (posts published in February 2026)\r\n   - created ge 2026-01-01T00:00:00Z (posts published on or after Jan 1, 2026)\r\n   - modified le 2026-12-31T23:59:59Z (posts last updated on or before Dec 31, 2026)\r\n   - created ge 2025-12-01T00:00:00Z and created le 2025-12-31T23:59:59Z (posts published in December 2025)\r\n\r\nCOMBINING FILTERS:\r\n• Multiple criteria: tags/any(t: t eq 'Features') and status eq 'Launched'\r\n• Product + Availability date: products/any(p: p eq 'Azure Storage') and (generalAvailabilityDate eq '2026-02' or previewAvailabilityDate eq '2026-02')\r\n• Product + Announcement date: products/any(p: p eq 'Azure Storage') and created ge 2026-02-01T00:00:00Z and created le 2026-02-28T23:59:59Z\r\n• Retirements in a specific month: tags/any(t: t eq 'Retirements') and availabilities/any(a: a/ring eq 'Retirement' and a/month eq 'February' and a/year eq 2026)\r\n• Product Category + Status: productCategories/any(pc: pc eq 'Databases') and status eq 'Launched'\r\n• Product + Tag + Availabilities: products/any(p: p eq 'Automation') and tags/any(t: t eq 'Retirements') and availabilities/any(a: a/ring eq 'Retirement' and a/month eq 'March' and a/year eq 2025)\r\n\r\nAVAILABLE FIELDS:\r\nid, baseId, status, created, modified, privatePreviewAvailabilityDate, previewAvailabilityDate, generalAvailabilityDate, tags, products, productCategories, availabilities (nested: ring, year, month)\r\n\r\nOUTPUT-ONLY FIELDS (not filterable, included in response):\r\ntitle, description",
+                        "type": "string",
+                        "default": null
+                    },
+                    "search": {
+                        "description": "Text search within post titles only. Use for finding posts containing specific keywords or phrases.",
+                        "type": "string",
+                        "default": null
+                    },
+                    "skip": {
+                        "description": "Number of items to skip for pagination. Each request returns up to 50 items. For page 1: skip=0 (default). For page 2: skip=50. For page 3: skip=100. The response includes Offset, Limit, TotalCount, and HasMore to help determine next page.",
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "default": null
+                    },
+                    "include_facets": {
+                        "description": "When true, includes facet taxonomy counts in the response showing distribution of ProductCategories, Products, and Tags. Useful for discovering available filter values or understanding data distribution.",
+                        "type": "boolean",
+                        "default": false
+                    }
+                }
+            },
+            "execution": {
+                "taskSupport": "optional"
+            },
+            "title": "Get recent azure updates"
+        },
+        {
+            "name": "get_recent_m365_roadmaps",
+            "description": "Retrieves M365 roadmap posts from Microsoft Release Communications with optional filtering and search capabilities.\r\nReturns up to 50 roadmap items per request with truncated descriptions to manage AI context window.\r\nUse GetM365RoadmapByIdAsync to get full details (including complete description) for specific items.\r\nIf results are empty or insufficient, ask user for more specific filter criteria.\r\n\r\nRESULT EXPLANATION REQUIREMENT:\r\nWhen returning filtered results:\r\n- Order results from most recent to oldest based on the relevant date field used for filtering.\r\n- Briefly state which date field was used:\r\n- Availability dates (GA/preview): 'Filtered by feature release timing (when features become available to customers)'\r\n- Publication dates (created/modified): 'Filtered by post publication date (when posts were published to roadmap)'\r\nExample: 'Here are M365 features with GA in February 2026 (filtered by general availability date)...'",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "filter": {
+                        "description": "OData filter expression for precise querying.\r\n\r\nBASIC FILTERS:\r\n• Products: products/any(p: p eq 'Microsoft Teams') or products/any(p: p eq 'SharePoint')\r\n• Status: status eq 'Launched' | 'Rolling out' | 'In development' | null\r\n• Release Rings (also called Release phases): \r\n  releaseRings/any(r: r eq 'Current Channel') or releaseRings/any(r: r eq 'General Availability') or \r\n  releaseRings/any(r: r eq 'Preview') or releaseRings/any(r: r eq 'Targeted Release') or \r\n  releaseRings/any(r: r eq 'Targeted Release (Entire Organization)') or releaseRings/any(r: r eq 'Targeted Release (Select People)')\r\n• Platforms: \r\n  platforms/any(pl: pl eq 'Android') or platforms/any(pl: pl eq 'Desktop') or platforms/any(pl: pl eq 'Developer') or \r\n  platforms/any(pl: pl eq 'Education') or platforms/any(pl: pl eq 'iOS') or platforms/any(pl: pl eq 'Linux') or \r\n  platforms/any(pl: pl eq 'Mac') or platforms/any(pl: pl eq 'Mobile') or platforms/any(pl: pl eq 'Teams and Surface Devices') or \r\n  platforms/any(pl: pl eq 'Web')\r\n• Cloud Instances: \r\n  cloudInstances/any(ci: ci eq 'DoD') or cloudInstances/any(ci: ci eq 'GCC') or \r\n  cloudInstances/any(ci: ci eq 'GCC High') or cloudInstances/any(ci: ci eq 'Worldwide (Standard Multi-Tenant)')\r\n• Availabilities (nested complex type with ring, year, month):\r\n  availabilities/any(a: a/ring eq 'General Availability' and a/year eq 2026)\r\n  availabilities/any(a: a/ring eq 'General Availability' and a/month eq 'February' and a/year eq 2026)\r\n  availabilities/any(a: a/ring eq 'Preview' and a/year ge 2025)\r\n  Ring values: 'General Availability', 'Preview'\r\n  Month values: 'January', 'February', ..., 'December'\r\n• Title: Use the 'search' parameter instead of filter for title text matching\r\n\r\n\r\nDATE FILTERING (choose based on user intent):\r\n\r\n1. FEATURE AVAILABILITY DATES (DEFAULT - use when user asks about RELEASE TIMING):\r\n   USE THIS FILTER WHEN user query contains words like: 'coming', 'rolling out', 'launching', 'released', 'upcoming', 'planned', 'available', 'GA dates', 'preview dates', 'release dates'\r\n   Format: YYYY-MM (e.g., '2026-01' for January 2026)\r\n   Meaning: WHEN THE FEATURE BECOMES AVAILABLE to customers (release timing)\r\n   \r\n   Examples:\r\n   - generalAvailabilityDate eq '2026-02' (features with GA in February 2026)\r\n   - previewAvailabilityDate ge '2026-01' (previews available in or after January 2026)\r\n   - generalAvailabilityDate le '2026-06' (GA on or before June 2026)\r\n   - (generalAvailabilityDate eq '2026-02' or previewAvailabilityDate eq '2026-02') (GA OR preview in February 2026)\r\n\r\n2. ANNOUNCEMENT/PUBLICATION DATES (use ONLY when user explicitly asks about when a post was published or modified):\r\n   USE THIS FILTER WHEN user query contains words like: 'published', 'updated', 'created', 'added', 'last week', 'modified', 'announcement date', 'post creation date', 'when was this posted', 'newly added', 'recently updated'\r\n   Format: ISO 8601 DateTime (e.g., 2026-02-01T00:00:00Z)\r\n   Meaning: WHEN THE POST WAS PUBLISHED to M365 Roadmap (not when feature becomes available)\r\n   \r\n   Examples:\r\n   - created ge 2026-02-01T00:00:00Z and created le 2026-02-28T23:59:59Z (posts published to roadmap in February 2026)\r\n   - created ge 2026-01-01T00:00:00Z (posts published on or after Jan 1, 2026)\r\n   - modified le 2026-12-31T23:59:59Z (posts last updated on or before Dec 31, 2026)\r\n   - created ge 2025-12-01T00:00:00Z and created le 2025-12-31T23:59:59Z (posts published in December 2025)\r\n\r\nCOMBINING FILTERS:\r\n• Multiple criteria: products/any(p: p eq 'Microsoft Teams') and status eq 'Launched'\r\n• Product + Status + Platform: products/any(p: p eq 'Microsoft Purview') and status eq 'In development' and platforms/any(pl: pl eq 'Web')\r\n• Product + Availability date: products/any(p: p eq 'Microsoft Copilot (Microsoft 365)') and (generalAvailabilityDate eq '2026-02' or previewAvailabilityDate eq '2026-02')\r\n• Product + Announcement date: products/any(p: p eq 'Microsoft Teams') and created ge 2026-02-01T00:00:00Z and created le 2026-02-28T23:59:59Z\r\n• Cloud + Status: cloudInstances/any(ci: ci eq 'GCC High') and status eq 'Launched'\r\n• Release Ring + Availability: releaseRings/any(r: r eq 'Preview') and previewAvailabilityDate ge '2025-01'\r\n• Product + Availabilities: products/any(p: p eq 'Microsoft Teams') and availabilities/any(a: a/ring eq 'General Availability' and a/month eq 'March' and a/year eq 2026)\r\n\r\nAVAILABLE FIELDS:\r\nid, baseId, status, created, modified, generalAvailabilityDate, previewAvailabilityDate, products, platforms, releaseRings, cloudInstances, availabilities (nested: ring, year, month)\r\n\r\nOUTPUT-ONLY FIELDS (not filterable, included in response):\r\ntitle, description, moreInfoUrls",
+                        "type": "string",
+                        "default": null
+                    },
+                    "search": {
+                        "description": "Text search within post titles only. Use for finding posts containing specific keywords or phrases.",
+                        "type": "string",
+                        "default": null
+                    },
+                    "skip": {
+                        "description": "Number of items to skip for pagination. Each request returns up to 50 items. For page 1: skip=0 (default). For page 2: skip=50. For page 3: skip=100. The response includes Offset, Limit, TotalCount, and HasMore to help determine next page.",
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "default": null
+                    },
+                    "include_facets": {
+                        "description": "When true, includes facet taxonomy counts in the response showing distribution of Products, Platforms, ReleaseRings, and CloudInstances. Useful for discovering available filter values or understanding data distribution.",
+                        "type": "boolean",
+                        "default": false
+                    }
+                }
+            },
+            "execution": {
+                "taskSupport": "optional"
+            },
+            "title": "Get recent m365 roadmaps"
+        }
+    ]
+}

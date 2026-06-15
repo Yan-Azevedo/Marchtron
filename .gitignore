@@ -1,4 +1,4 @@
-# Environment and local secrets
+Dex# Environment and local secrets
 env/
 .env
 .env.*

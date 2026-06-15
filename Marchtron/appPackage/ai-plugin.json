@@ -7,6 +7,22 @@
     "namespace": "marchtron",
     "functions": [
         {
+            "name": "get_azure_update_by_id",
+            "description": "Retrieves a specific Azure update post from Microsoft Release Communications by its unique identifier. Returns full details including the complete untruncated description, products, tags, and availability dates. Use this after listing to get full information about a specific post."
+        },
+        {
+            "name": "get_m365_roadmap_by_id",
+            "description": "Retrieves a specific M365 roadmap post from Microsoft Release Communications by its unique identifier. Returns full details including the complete untruncated description, products, and availability dates. Use this after listing to get full information about a specific post."
+        },
+        {
+            "name": "get_recent_azure_updates",
+            "description": "Retrieves Azure update posts from Microsoft Release Communications with optional filtering and search capabilities.\r\nReturns up to 50 Azure updates per request with truncated descriptions to manage AI context window.\r\nUse GetAzureUpdateByIdAsync to get full details (including complete description) for specific items.\r\nIf results are empty or insufficient, ask user for more specific filter criteria.\r\n\r\nRETIREMENT QUERIES:\r\nWhen user asks about retirements, retiring services, or end-of-life:\r\n- Filter by tag: tags/any(t: t eq 'Retirements')\r\n- To filter by retirement date, use the availabilities collection: availabilities/any(a: a/ring eq 'Retirement' and a/month eq 'February' and a/year eq 2026)\r\n- You can combine both: tags/any(t: t eq 'Retirements') and availabilities/any(a: a/ring eq 'Retirement' and a/month eq 'February' and a/year eq 2026)\r\n- Example: 'Azure retirements in Feb 2026' → tags/any(t: t eq 'Retirements') and availabilities/any(a: a/ring eq 'Retirement' and a/month eq 'February' and a/year eq 2026)\r\n- Present retirement timing from the availabilities array: look for entries where ring='Retirement' and show the year and month.\r\n\r\nRESULT EXPLANATION REQUIREMENT:\r\nWhen returning filtered results:\r\n- Order results from most recent to oldest based on the relevant date field used for filtering.\r\n- Briefly state which date field was used:\r\n- Availability dates (GA/preview): 'Filtered by feature release timing (when features become available to customers)'\r\n- Retirement dates: 'Filtered by retirement tag. Retirement dates shown from the availabilities array (ring, year, month).'\r\n- Publication dates (created/modified): 'Filtered by post publication date (when posts were published to Azure Updates)'\r\nExample: 'Here are Azure features with GA in February 2026 (filtered by general availability date)...'"
+        },
+        {
+            "name": "get_recent_m365_roadmaps",
+            "description": "Retrieves M365 roadmap posts from Microsoft Release Communications with optional filtering and search capabilities.\r\nReturns up to 50 roadmap items per request with truncated descriptions to manage AI context window.\r\nUse GetM365RoadmapByIdAsync to get full details (including complete description) for specific items.\r\nIf results are empty or insufficient, ask user for more specific filter criteria.\r\n\r\nRESULT EXPLANATION REQUIREMENT:\r\nWhen returning filtered results:\r\n- Order results from most recent to oldest based on the relevant date field used for filtering.\r\n- Briefly state which date field was used:\r\n- Availability dates (GA/preview): 'Filtered by feature release timing (when features become available to customers)'\r\n- Publication dates (created/modified): 'Filtered by post publication date (when posts were published to roadmap)'\r\nExample: 'Here are M365 features with GA in February 2026 (filtered by general availability date)...'"
+        },
+        {
             "name": "microsoft_code_sample_search",
             "description": "Search for code snippets and examples in official Microsoft Learn documentation. This tool retrieves relevant code samples from Microsoft documentation pages providing developers with practical implementation examples and best practices for Microsoft/Azure products and services related coding tasks. This tool will help you use the **LATEST OFFICIAL** code snippets to empower coding capabilities.\n\n## When to Use This Tool\n- When you are going to provide sample Microsoft/Azure related code snippets in your answers.\n- When you are **generating any Microsoft/Azure related code**.\n\n## Usage Pattern\nInput a descriptive query, or SDK/class/method name to retrieve related code samples. The optional parameter `language` can help to filter results.\n\nEligible values for `language` parameter include: csharp javascript typescript python powershell azurecli al sql java kusto cpp go rust ruby php"
         },
@@ -20,6 +36,24 @@
         }
     ],
     "runtimes": [
+        {
+            "type": "RemoteMCPServer",
+            "spec": {
+                "url": "https://www.microsoft.com/releasecommunications/mcp",
+                "mcp_tool_description": {
+                    "file": "mcp-tools-1.json"
+                }
+            },
+            "run_for_functions": [
+                "get_azure_update_by_id",
+                "get_m365_roadmap_by_id",
+                "get_recent_azure_updates",
+                "get_recent_m365_roadmaps"
+            ],
+            "auth": {
+                "type": "None"
+            }
+        },
         {
             "type": "RemoteMCPServer",
             "spec": {
