@@ -1,0 +1,4 @@
+# Environment and local secrets
+env/
+.env
+.env.*
