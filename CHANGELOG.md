@@ -14,6 +14,9 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
   - `microsoft_docs_search` — busca semântica na documentação oficial.
   - `microsoft_docs_fetch` — recuperação de página completa em markdown.
   - `microsoft_code_sample_search` — busca de exemplos de código oficiais.
+- Conexão com o Microsoft Release Communications MCP Server (`https://www.microsoft.com/releasecommunications/mcp`, público, sem autenticação) com 4 tools: get_recent_m365_roadmaps, get_m365_roadmap_by_id, get_recent_azure_updates, get_azure_update_by_id.
+- Orientação no `instruction.txt` para uso do MRC em perguntas sobre roadmap, release notes, status de disponibilidade e retirements, com separação de consultas entre Azure Updates e Microsoft 365 Roadmap.
+- Versão do app (`manifest.json`) elevada para 1.2.0.
 - Configuração `mcp.json` do servidor MCP do Learn (transporte HTTP, sem autenticação).
 - Arquivos base do repositório: `CHANGELOG.md`, `CODEOWNERS`, `LICENSE.md`, `README.md`.
 
