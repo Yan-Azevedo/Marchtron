@@ -25,11 +25,15 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - instruction.txt convertido de JSON para texto puro estruturado, para legibilidade e manutenção.
 
 ### Changed
+- instruction.txt convertido de JSON para texto puro estruturado, para legibilidade e manutenção.
 - Reforço de concisão nas respostas (corte de respostas longas e seções em excesso).
 - Uso de emoji limitado a moderação.
 - Acionamento obrigatório do MRC em perguntas de roadmap/novidades (antes respondidas apenas com Learn).
 - Agente não oferece mais conteúdos extras não solicitados no final das respostas.
-- Versão do app elevada para 1.3.1.
+- Proibição explícita de seções de resumo (TL;DR, resumo executivo, leitura estratégica) e de ofertas de conteúdo extra não solicitado ao final.
+- Tabelas restritas a comparações diretas.
+- Roteamento de perguntas combinadas: parte de roadmap sempre acionando o MRC, mesmo quando a pergunta mistura temas de Learn.
+- Versão do app elevada para 1.3.2.
 - Metadados de publicação preenchidos no `manifest.json`: developer (Yan Azevedo), nome completo, descrições e URLs de privacidade e termos de uso.
 - `contact_email` do `ai-plugin.json` atualizado.
 - Versão do app elevada para 1.3.0.
