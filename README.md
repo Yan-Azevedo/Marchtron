@@ -4,7 +4,9 @@
 
 **Assistente técnico e de atualização para o ecossistema Microsoft — esclarece dúvidas sobre desenvolvimento de agentes e automação, sempre fundamentado na documentação oficial mais recente.**
 
-<img src="./Assessts/Marchtron.png" alt="Marchtron" width="380"/>
+<p align="center">
+  <img src="\Assets\Marchtron.png" alt="Marchtron" width="80%"/>
+</p>
 
 ![Tipo](https://img.shields.io/badge/Tipo-Declarative_Agent-0A0B0F?style=flat-square)
 ![Plataforma](https://img.shields.io/badge/Plataforma-Microsoft_365_Copilot-76CBEA?style=flat-square&logo=microsoft&logoColor=white&labelColor=13151C)
