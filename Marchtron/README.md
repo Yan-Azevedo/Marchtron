@@ -4,7 +4,9 @@
 
 **Arquitetura, decisões de engenharia e operação do agente declarativo.**
 
-<img src="./Assessts/Marchtron.png" alt="Marchtron" width="280"/>
+<p align="center">
+  <img src="/Assets/Marchtron-Tech.png" alt="Marchtron" width="80%"/>
+</p>
 
 ![Tipo](https://img.shields.io/badge/Tipo-Declarative_Agent-13151C?style=flat-square&labelColor=76CBEA)
 ![Schema](https://img.shields.io/badge/declarativeAgent-v1.7-13151C?style=flat-square&labelColor=76CBEA)

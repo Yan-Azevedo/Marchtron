@@ -7,6 +7,8 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [1.3.7] - 2026-06-16
+
 ### Added
 - Estrutura inicial do agente declarativo **Marchtron** via Microsoft 365 Agents Toolkit.
 - Conexão com o **Microsoft Learn MCP Server** (`https://learn.microsoft.com/api/mcp`, público, sem autenticação) como fonte de grounding obrigatória, com 3 tools:
