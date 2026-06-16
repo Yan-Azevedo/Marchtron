@@ -2,14 +2,16 @@
 
 # 🛰️ Marchtron
 
-**Agente declarativo para Microsoft 365 Copilot — suporte e esclarecimento de dúvidas sobre tecnologias Microsoft, sempre fundamentado na documentação oficial mais atualizada.**
+**Assistente técnico e de atualização para o ecossistema Microsoft — esclarece dúvidas sobre desenvolvimento de agentes e automação, sempre fundamentado na documentação oficial mais recente.**
 
-![Tipo](https://img.shields.io/badge/Tipo-Declarative_Agent-0B1F33?style=flat-square)
-![Plataforma](https://img.shields.io/badge/Plataforma-Microsoft_365_Copilot-0078D4?style=flat-square&logo=microsoft)
-![Grounding](https://img.shields.io/badge/Grounding-Microsoft_Learn_MCP-2F4F6F?style=flat-square)
-![Versão](https://img.shields.io/badge/versão-0.1.0-1F9D8A?style=flat-square)
-![Licença](https://img.shields.io/badge/licença-Proprietária-6B7280?style=flat-square)
-![Status](https://img.shields.io/badge/status-Em_desenvolvimento-E0A800?style=flat-square)
+<img src="./Assessts/Marchtron.png" alt="Marchtron" width="380"/>
+
+![Tipo](https://img.shields.io/badge/Tipo-Declarative_Agent-0A0B0F?style=flat-square)
+![Plataforma](https://img.shields.io/badge/Plataforma-Microsoft_365_Copilot-76CBEA?style=flat-square&logo=microsoft&logoColor=white&labelColor=13151C)
+![Grounding](https://img.shields.io/badge/Grounding-Learn_+_Release_Communications-3DA8A8?style=flat-square&labelColor=13151C)
+![Versão](https://img.shields.io/badge/versão-1.3.6-76CBEA?style=flat-square&labelColor=13151C)
+![Licença](https://img.shields.io/badge/licença-Proprietária-8FB4C9?style=flat-square&labelColor=13151C)
+![Status](https://img.shields.io/badge/status-Operacional-3DA8A8?style=flat-square&labelColor=13151C)
 
 </div>
 
@@ -18,13 +20,12 @@
 ## 📑 Índice
 
 - [Visão Geral](#-visão-geral)
-- [Persona](#-persona)
-- [Regra de Resposta](#-regra-de-resposta)
+- [O que o Marchtron faz](#-o-que-o-marchtron-faz)
+- [Persona e Regra de Resposta](#-persona-e-regra-de-resposta)
 - [Arquitetura](#-arquitetura)
-- [Tools do Microsoft Learn](#-tools-do-microsoft-learn)
-- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Fontes Conectadas](#-fontes-conectadas)
+- [Conversation Starters](#-conversation-starters)
 - [Pré-requisitos](#-pré-requisitos)
-- [Desenvolvimento](#-desenvolvimento)
 - [Status](#-status)
 - [Versionamento](#-versionamento)
 - [Licença](#-licença)
@@ -33,23 +34,26 @@
 
 ## 🎯 Visão Geral
 
-**Marchtron** é um agente declarativo para **Microsoft 365 Copilot** que esclarece dúvidas e auxilia na resolução de problemas com recursos e tecnologias Microsoft. Toda resposta é fundamentada na **documentação oficial mais atualizada**, recuperada em tempo real através do **Microsoft Learn MCP Server**.
+**Marchtron** é um agente declarativo para **Microsoft 365 Copilot**, criado para o dia a dia de quem desenvolve agentes e automações no ecossistema Microsoft. Ele esclarece dúvidas sobre **Copilot, Copilot M365, Copilot Studio, Power Automate, AI Builder, Dataverse** e tecnologias relacionadas — explicando como os recursos funcionam, como configurá-los, como resolver problemas e o que mudou nas plataformas.
 
-Diferente de um assistente que responde a partir de conhecimento estático, o Marchtron consulta a fonte oficial **antes** de responder — garantindo que a orientação reflita o estado atual das tecnologias Microsoft, não uma fotografia desatualizada.
-
----
-
-## 🧭 Persona
-
-**Especialista técnico Microsoft.** Direto, preciso e prático. Responde com base em documentação oficial, nunca em suposições. Sem enrolação, sem floreio — vai ao ponto e fundamenta.
+O diferencial é a fonte: o Marchtron **consulta a documentação oficial em tempo real antes de responder**, em vez de depender de conhecimento estático. Isso garante que a orientação reflita o estado atual das tecnologias Microsoft, não uma fotografia desatualizada.
 
 ---
 
-## ⚖️ Regra de Resposta
+## 🧩 O que o Marchtron faz
 
-> **Regra inegociável do comportamento do agente.**
+- **Esclarece como recursos funcionam** — conceitos, diferenças entre opções, quando usar cada caminho.
+- **Guia configuração e troubleshooting** — passo a passo numerado, baseado em procedimento oficial.
+- **Traz o que é novo** — roadmap do Microsoft 365, atualizações e retirements do Azure, status de release.
+- **Fundamenta em código oficial** — exemplos e samples direto da documentação Microsoft.
 
-Toda pergunta técnica sobre tecnologias Microsoft **DEVE** ser respondida consultando **primeiro** o Microsoft Learn MCP Server. A resposta **prioriza sempre a informação mais atualizada** da documentação oficial, **nunca conhecimento estático do modelo**. Quando relevante, a fonte oficial do Learn é **citada ou apontada**.
+---
+
+## 🧭 Persona e Regra de Resposta
+
+**Persona:** especialista técnico Microsoft — direto, preciso e prático.
+
+> **Regra inegociável:** toda pergunta factual é respondida consultando **primeiro** as fontes oficiais via MCP. A resposta prioriza sempre a informação **mais atualizada** da documentação oficial, **nunca conhecimento estático**. Mesmo quando há aparente certeza, o agente confirma na fonte antes de responder.
 
 ---
 
@@ -58,87 +62,77 @@ Toda pergunta técnica sobre tecnologias Microsoft **DEVE** ser respondida consu
 | Aspecto | Definição |
 |---|---|
 | **Tipo** | Agente declarativo M365 — orquestração e modelo fornecidos pelo Microsoft 365 Copilot |
-| **Fonte de grounding** | Microsoft Learn MCP Server (`https://learn.microsoft.com/api/mcp`) |
-| **Conexão** | Action via `ai-plugin.json` · runtime `RemoteMCPServer` · sem autenticação |
-| **Transporte** | Streamable HTTP |
+| **Grounding** | Dois servidores MCP remotos, públicos e sem autenticação |
+| **Conexão** | Actions via `ai-plugin.json` (runtimes `RemoteMCPServer`) |
+| **Foco** | Desenvolvimento de agentes e automação Microsoft |
 
 ```mermaid
 flowchart LR
-	U([👤 Usuário]) --> C[Microsoft 365 Copilot<br/>orquestração + modelo]
-	C --> M[🛰️ Marchtron<br/>agente declarativo]
-	M -->|action MCP| L[(Microsoft Learn<br/>MCP Server)]
-	L -->|docs + code samples| M
-	M --> C
-	C --> U
+    U([👤 Usuário]) --> C[Microsoft 365 Copilot<br/>orquestração + modelo]
+    C --> M[🛰️ Marchtron<br/>agente declarativo]
+    M -->|como funciona / configurar| L[(Microsoft Learn<br/>MCP)]
+    M -->|o que vem / o que mudou| R[(Release Communications<br/>MCP)]
+    L --> M
+    R --> M
+    M --> C
+    C --> U
 ```
 
-O Microsoft 365 Copilot faz a orquestração e fornece o modelo; o Marchtron declara **instruções, persona e a action do Learn**; o Learn MCP entrega a documentação oficial atualizada como contexto de resposta.
+O Marchtron declara **persona, regra de resposta e as actions MCP**; o Microsoft 365 Copilot fornece a orquestração e o modelo. O roteamento direciona cada pergunta à fonte correta: documentação para "como funciona", roadmap para "o que vem".
 
 ---
 
-## 🔧 Tools do Microsoft Learn
+## 🔌 Fontes Conectadas
+
+**Microsoft Learn MCP** — `https://learn.microsoft.com/api/mcp`
+*Como funciona / como configurar.*
 
 | Tool | Função |
 |---|---|
-| `microsoft_docs_search` | Busca semântica na documentação oficial Microsoft / Azure |
-| `microsoft_docs_fetch` | Recuperação de página completa de documentação em markdown |
-| `microsoft_code_sample_search` | Busca de exemplos de código oficiais para troubleshooting |
+| `microsoft_docs_search` | Busca semântica na documentação oficial |
+| `microsoft_docs_fetch` | Página completa de documentação em markdown |
+| `microsoft_code_sample_search` | Exemplos de código oficiais |
+
+**Microsoft Release Communications MCP** — `https://www.microsoft.com/releasecommunications/mcp`
+*O que vem / o que mudou.*
+
+| Tool | Função |
+|---|---|
+| `get_recent_m365_roadmaps` | Itens recentes do roadmap do Microsoft 365 |
+| `get_m365_roadmap_by_id` | Item específico do roadmap M365 |
+| `get_recent_azure_updates` | Atualizações e retirements do Azure |
+| `get_azure_update_by_id` | Item específico do Azure |
 
 ---
 
-## 📂 Estrutura do Projeto
+## 💬 Conversation Starters
 
-```
-Marchtron/
-├── appPackage/
-│   ├── declarativeAgent.json     # definição do agente (persona, instruções, actions)
-│   ├── manifest.json             # manifest do app M365
-│   ├── instruction.txt           # instruções de comportamento do agente
-│   ├── ai-plugin.json            # action MCP (Learn) — funções e runtime
-│   └── icons/                    # ícones color e outline
-├── .vscode/
-│   └── mcp.json                  # configuração do servidor MCP do Learn
-├── env/                          # variáveis de ambiente (Local/Dev)
-├── evals/                        # avaliações do agente
-├── m365agents.yml                # configuração do Microsoft 365 Agents Toolkit
-├── README.md
-├── CHANGELOG.md
-├── LICENSE.md
-└── CODEOWNERS
-```
+- **Novidades do Copilot Studio** — atualizações e novidades mais recentes.
+- **Workflows no Copilot Studio** — o que mudou e o que está no roadmap.
+- **Atualizações do Copilot M365** — recursos em rollout ou no roadmap.
+- **Novidades do Copilot** — o mais recente em capacidades de chat.
 
 ---
 
 ## ✅ Pré-requisitos
 
-- **Visual Studio Code** com a extensão **Microsoft 365 Agents Toolkit**
+- **Visual Studio Code** com o **Microsoft 365 Agents Toolkit**
 - Conta **Microsoft 365** com licença **Copilot**
-- Acesso ao **Microsoft Learn MCP Server** (público, sem autenticação)
-
----
-
-## 🚀 Desenvolvimento
-
-O build é conduzido pelo **Microsoft 365 Agents Toolkit**. O agente é provisionado e testado diretamente no **Microsoft 365 Copilot**.
-
-```bash
-# Provisionar e visualizar o agente via Microsoft 365 Agents Toolkit (VS Code)
-# Use os comandos do toolkit na barra lateral: Provision → Preview in Microsoft 365 Copilot
-```
+- Acesso aos servidores MCP do Learn e do Release Communications (públicos, sem autenticação)
 
 ---
 
 ## 📡 Status
 
-**Em desenvolvimento.**
+**Operacional** — provisionado e validado em ambiente de uso pessoal.
 
-> ⚠️ **Nota:** o Microsoft Learn MCP Server está em **public preview**. Sua implementação pode mudar antes do GA, incluindo o conjunto de tools expostas e seus schemas.
+> ⚠️ O Microsoft Learn MCP Server e o Release Communications MCP Server estão em evolução contínua; o conjunto de tools e seus schemas podem mudar.
 
 ---
 
 ## 🔖 Versionamento
 
-Este projeto segue o [Versionamento Semântico](https://semver.org/lang/pt-BR/). Todas as mudanças relevantes são documentadas no [`CHANGELOG.md`](./CHANGELOG.md).
+Segue [Versionamento Semântico](https://semver.org/lang/pt-BR/). Todas as mudanças relevantes são documentadas no [`CHANGELOG.md`](./CHANGELOG.md).
 
 ---
 
