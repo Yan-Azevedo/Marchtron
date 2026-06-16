@@ -8,12 +8,12 @@
   <img src="\Assets\Marchtron.png" alt="Marchtron" width="80%"/>
 </p>
 
-![Tipo](https://img.shields.io/badge/Tipo-Declarative_Agent-0A0B0F?style=flat-square)
-![Plataforma](https://img.shields.io/badge/Plataforma-Microsoft_365_Copilot-76CBEA?style=flat-square&logo=microsoft&logoColor=white&labelColor=13151C)
-![Grounding](https://img.shields.io/badge/Grounding-Learn_+_Release_Communications-3DA8A8?style=flat-square&labelColor=13151C)
-![Versão](https://img.shields.io/badge/versão-1.3.6-76CBEA?style=flat-square&labelColor=13151C)
-![Licença](https://img.shields.io/badge/licença-Proprietária-8FB4C9?style=flat-square&labelColor=13151C)
-![Status](https://img.shields.io/badge/status-Operacional-3DA8A8?style=flat-square&labelColor=13151C)
+![Tipo](https://img.shields.io/badge/Tipo-Declarative_Agent-13151C?style=flat-square&labelColor=76CBEA)
+![Plataforma](https://img.shields.io/badge/Plataforma-Microsoft_365_Copilot-13151C?style=flat-square&labelColor=76CBEA)
+![Grounding](https://img.shields.io/badge/Grounding-Learn_+_Release_Communications-13151C?style=flat-square&labelColor=3DA8A8)
+![Versão](https://img.shields.io/badge/versão-1.3.6-13151C?style=flat-square&labelColor=76CBEA)
+![Licença](https://img.shields.io/badge/licença-Proprietária-13151C?style=flat-square&labelColor=8FB4C9)
+![Status](https://img.shields.io/badge/status-Operacional-13151C?style=flat-square&labelColor=3DA8A8)
 
 </div>
 
