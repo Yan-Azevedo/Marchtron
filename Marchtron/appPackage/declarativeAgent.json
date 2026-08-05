@@ -4,6 +4,11 @@
     "name": "Marchtron",
     "description": "Declarative agent created with Microsoft 365 Agents Toolkit can assist user in calling MCP Servers",
     "instructions": "$[file('instruction.txt')]",
+    "capabilities": [
+        {
+            "name": "CodeInterpreter"
+        }
+    ],
     "conversation_starters": [
         {
             "title": "Novidades do Copilot Studio",
