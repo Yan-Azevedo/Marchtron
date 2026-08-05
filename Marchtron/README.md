@@ -12,7 +12,7 @@
 ![Schema](https://img.shields.io/badge/declarativeAgent-v1.7-13151C?style=flat-square&labelColor=76CBEA)
 ![Plugin](https://img.shields.io/badge/ai--plugin-v2.4-13151C?style=flat-square&labelColor=3DA8A8)
 ![Manifest](https://img.shields.io/badge/manifest-1.27-13151C?style=flat-square&labelColor=3DA8A8)
-![Versão](https://img.shields.io/badge/versão-1.3.6-13151C?style=flat-square&labelColor=76CBEA)
+![Versão](https://img.shields.io/badge/versão-1.4.0-13151C?style=flat-square&labelColor=76CBEA)
 
 </div>
 
@@ -69,7 +69,7 @@ Marchtron/
 │   └── outline.png             # ícone do agente (outline)
 ├── .vscode/
 │   └── mcp.json                # config dos servidores MCP para o toolkit
-├── Assessts/
+├── Assets/
 │   └── Marchtron.png           # arte de marca
 ├── env/                        # variáveis de ambiente (gitignored)
 ├── evals/                      # avaliações do agente
