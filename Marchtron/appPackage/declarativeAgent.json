@@ -2,35 +2,58 @@
     "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.7/schema.json",
     "version": "v1.7",
     "name": "Marchtron",
-    "description": "Declarative agent created with Microsoft 365 Agents Toolkit can assist user in calling MCP Servers",
+    "description": "Assistente técnico especializado em IA Microsoft e administração do ambiente Microsoft 365, fundamentado em documentação oficial e fontes técnicas verificadas",
     "instructions": "$[file('instruction.txt')]",
     "capabilities": [
+        { "name": "CodeInterpreter" },
+        { "name": "GraphicArt" },
         {
-            "name": "CodeInterpreter"
+            "name": "WebSearch",
+            "sites": [
+                { "url": "https://learn.microsoft.com" },
+                { "url": "https://techcommunity.microsoft.com" },
+                { "url": "https://www.microsoft.com" },
+                { "url": "https://devblogs.microsoft.com" },
+                { "url": "https://azure.microsoft.com" },
+                { "url": "https://powerplatform.microsoft.com" },
+                { "url": "https://github.com" },
+                { "url": "https://practical365.com" },
+                { "url": "https://office365itpros.com" },
+                { "url": "https://www.powershellgallery.com" }
+            ]
         }
     ],
     "conversation_starters": [
         {
-            "title": "Novidades do Copilot Studio",
-            "text": "Quais são as atualizações e novidades mais recentes no Copilot Studio?"
+            "title": "Atualizações do Copilot Basic/Chat",
+            "text": "Traga as atualizações do Microsoft Copilot Chat dos últimos 15 dias: recursos novos, itens em rollout e itens de roadmap. Informe a data de cada item."
         },
         {
-            "title": "Workflows no Copilot Studio",
-            "text": "O que mudou nos Workflows do Copilot Studio e o que está no roadmap?"
+            "title": "Atualizações do Copilot M365/Premium",
+            "text": "Traga as novidades do Microsoft 365 Copilot dos últimos 15 dias: evolução de funcionamento, melhorias de Work IQ, recursos para agentes, itens em rollout e roadmap. Informe a data de cada item."
         },
         {
-            "title": "Atualizações do Copilot M365",
-            "text": "Quais recursos novos do Microsoft 365 Copilot estão em rollout ou no roadmap?"
+            "title": "Atualizações do Copilot Studio",
+            "text": "Traga os recursos novos que o Copilot Studio recebeu nos últimos 15 dias, incluindo itens em rollout e roadmap. Informe a data de cada item."
         },
         {
-            "title": "Novidades do Copilot",
-            "text": "O que há de mais recente no Microsoft Copilot e nas suas capacidades de chat?"
+            "title": "Atualizações do Copilot Cowork",
+            "text": "Traga as novidades do Microsoft Copilot Cowork dos últimos 15 dias: novos recursos, plugins e skills, mudanças de billing e Copilot Credits, itens em rollout e roadmap. Informe a data de cada item."
+        },
+                {
+            "title": "Microsoft Scout e Autopilots",
+            "text": "Traga o estado atual do Microsoft Scout (Frontier): novidades recentes, disponibilidade e programa Frontier, requisitos e licenciamento, configuração administrativa (Intune, políticas de grupo, controles de admin) e itens de roadmap. Informe a data e o estágio de cada item."
+        },
+        {
+            "title": "Modelos de IA no ecossistema Microsoft",
+            "text": "Quais modelos de linguagem estão disponíveis hoje no Microsoft Copilot, Copilot Studio e Azure AI Foundry, incluindo modelos de terceiros e modelos próprios da Microsoft? Traga o que mudou nos últimos 30 dias e o que está anunciado. Informe a data e o estágio de cada item."
+        },
+        {
+            "title": "Administração do Microsoft 365",
+            "text": "Preciso configurar um recurso pelos painéis administrativos do Microsoft 365. Compile a documentação oficial com pré-requisitos, licenças, permissões necessárias, passo a passo e limitações conhecidas."
         }
     ],
     "actions": [
-        {
-            "id": "action_1",
-            "file": "ai-plugin.json"
-        }
+        { "id": "action_1", "file": "ai-plugin.json" }
     ]
 }

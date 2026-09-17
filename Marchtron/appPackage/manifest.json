@@ -1,8 +1,8 @@
 {
-    "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.27/MicrosoftTeams.schema.json",
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.27/MicrosoftTeams.schema.json",
     "manifestVersion": "1.27",
-    "version": "1.4.3",
-    "id": "7978a7cd-dec5-43e4-8f42-76e58ea19cac",
+    "version": "1.4.0",
+    "id": "${{TEAMS_APP_ID}}",
     "developer": {
         "name": "Yan Azevedo",
         "websiteUrl": "https://github.com/Yan-Azevedo",
@@ -15,17 +15,17 @@
     },
     "name": {
         "short": "Marchtron",
-        "full": "Marchtron — Especialista técnico Microsoft"
+        "full": "Marchtron — IA Microsoft e Administração M365"
     },
     "description": {
-        "short": "Suporte e dúvidas sobre tecnologias Microsoft com base na documentação oficial.",
-        "full": "Marchtron é um agente declarativo para Microsoft 365 Copilot que esclarece dúvidas e auxilia na resolução de problemas com recursos e tecnologias Microsoft. Toda resposta é fundamentada na documentação oficial mais atualizada, recuperada em tempo real via Microsoft Learn e Microsoft Release Communications. Atua em entendimento de produto, configuração, troubleshooting, arquitetura, boas práticas, exemplos de código, roadmap e atualizações de serviço."
+        "short": "Atualizações de IA Microsoft e configuração administrativa do Microsoft 365.",
+        "full": "Marchtron é um agente declarativo para Microsoft 365 Copilot especializado em duas frentes: acompanhamento da evolução da IA Microsoft (Copilot Chat, Microsoft 365 Copilot, Copilot Studio, Copilot Cowork, Microsoft Scout e Azure AI Foundry) e administração do ambiente Microsoft 365 pelos painéis administrativos. Fundamenta as respostas em documentação oficial via Microsoft Learn e Microsoft Release Communications, complementando com fontes técnicas verificadas quando a documentação oficial não cobre o cenário."
     },
-    "accentColor": "#FFFFFF",
+    "accentColor": "#76CBEA",
     "supportsChannelFeatures": "tier1",
     "composeExtensions": [],
     "copilotAgents": {
-        "declarativeAgents": [            
+        "declarativeAgents": [
             {
                 "id": "declarativeAgent",
                 "file": "declarativeAgent.json"

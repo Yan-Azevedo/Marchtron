@@ -7,6 +7,19 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+### Added
+- Capability `CodeInterpreter`: execução de Python em sandbox para testar snippets, validar lógica de filtros OData, gerar gráficos e processar arquivos anexados.
+- Capability `GraphicArt`: geração de imagens sob demanda.
+- Capability `WebSearch` escopada em 10 domínios (Microsoft Learn, Tech Community, Microsoft, DevBlogs, Azure, Power Platform, GitHub, Practical365, Office365ITPros, PowerShell Gallery).
+- Conversation starters para Copilot Cowork, Microsoft Scout e Autopilots, modelos de IA do ecossistema Microsoft e administração do Microsoft 365.
+
+### Changed
+- `instruction.txt` reestruturado com vertentes de atuação priorizadas (IA Microsoft, administração Microsoft 365, complementares; troubleshooting e recursos não-IA como secundárias).
+- Hierarquia de fontes definida: Microsoft Learn como fonte da verdade, Release Communications para roadmap, busca web como complemento oficial e de especialistas.
+- Regra obrigatória de compilação de múltiplas fontes antes de responder procedimentos.
+- Regra de validação de atualidade com verificação de data e distinção de estágios (anunciado, preview, rollout, GA, retirado).
+- `manifest.json`: nome completo, descrições e accentColor realinhados às duas vertentes; versão elevada para 1.4.0.
+
 ## [1.3.7] - 2026-06-16
 
 ### Added
