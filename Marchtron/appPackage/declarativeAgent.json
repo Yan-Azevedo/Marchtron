@@ -8,19 +8,7 @@
         { "name": "CodeInterpreter" },
         { "name": "GraphicArt" },
         {
-            "name": "WebSearch",
-            "sites": [
-                { "url": "https://learn.microsoft.com" },
-                { "url": "https://techcommunity.microsoft.com" },
-                { "url": "https://www.microsoft.com" },
-                { "url": "https://devblogs.microsoft.com" },
-                { "url": "https://azure.microsoft.com" },
-                { "url": "https://powerplatform.microsoft.com" },
-                { "url": "https://github.com" },
-                { "url": "https://practical365.com" },
-                { "url": "https://office365itpros.com" },
-                { "url": "https://www.powershellgallery.com" }
-            ]
+            "name": "WebSearch"
         }
     ],
     "conversation_starters": [
